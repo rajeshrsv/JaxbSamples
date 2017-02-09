@@ -1,8 +1,9 @@
 package com.jaxbsample.domain;
 
+
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @XmlRootElement
 public class Address {
@@ -22,6 +23,12 @@ public class Address {
 	@XmlElement
 	public void setAddrId(int addrId) {
 		this.addrId = addrId;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [addrId=" + addrId + ", doorNo=" + doorNo + ", street=" + street + ", district=" + district
+				+ ", state=" + state + ", country=" + country + ", pinCode=" + pinCode + "]";
 	}
 
 	public String getDoorNo() {

@@ -1,62 +1,104 @@
 package com.jaxbsample.domain;
-
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
-
-@XmlRootElement
+@XmlRootElement(name = "Emp")
+@XmlType(propOrder = {"name", "age", "role", "gender", "address"})
 public class Student {
 
-	private int studId;
-	private String name;
-	private String rollNo;
-	private String deptName;
+    private int id;
 
-	private Address address;
+    private String gender;
 
-	public Address getAddress() {
+    private int age;
+    private String name;
+    private String role;
+
+    private String password;
+    
+    private Address address;
+
+
+    public Address getAddress() {
 		return address;
 	}
 
-	@XmlElement
+
 	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-	public int getStudId() {
-		return studId;
-	}
 
-	@XmlElement
-	public void setStudId(int studId) {
-		this.studId = studId;
-	}
+	@XmlTransient
+    public String getPassword() {
+        return password;
+    }
 
-	public String getName() {
-		return name;
-	}
 
-	@XmlElement
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getRollNo() {
-		return rollNo;
-	}
 
-	@XmlElement
-	public void setRollNo(String rollNo) {
-		this.rollNo = rollNo;
-	}
+    @XmlAttribute
+    public int getId() {
+        return id;
+    }
 
-	public String getDeptName() {
-		return deptName;
-	}
 
-	@XmlElement
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public int getAge() {
+        return age;
+    }
+
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    @XmlElement(name = "gen")
+    public String getGender() {
+        return gender;
+    }
+
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+    @Override
+	public String toString() {
+		return "Student [id=" + id + ", gender=" + gender + ", age=" + age + ", name=" + name + ", role=" + role
+				+ ", password=" + password + ", address=" + address + "]";
 	}
 
 }
