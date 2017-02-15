@@ -1,11 +1,19 @@
 package com.jaxbex.service;
 
-import javax.xml.bind.JAXBException;
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface IService {
 
-    void marshaller(Object object, Class<?> clazz, String fileName) throws JAXBException;
+    String marshaller(Object object, Class<?> clazz) throws Exception;
 
     Object unmarshaller(String xml, Class<?> clazz) throws Exception;
+
+    String jsonMarshaller(Object object) throws JsonProcessingException;
+
+    Object jsonUnmarshaller(String jsonString, Class<?> clazz) throws JsonParseException, JsonMappingException, IOException;
 
 }

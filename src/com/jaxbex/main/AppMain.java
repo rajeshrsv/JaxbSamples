@@ -1,6 +1,5 @@
 package com.jaxbex.main;
 
-
 import com.jaxbex.domain.Address;
 import com.jaxbex.domain.Root;
 import com.jaxbex.domain.Student;
@@ -12,6 +11,7 @@ public class AppMain {
     public static void main(final String[] args) throws Exception {
 
         final IService service = new Service();
+
         final Student student = new Student();
         student.setName("Rajesh");
         student.setAge(27);
@@ -29,8 +29,9 @@ public class AppMain {
 
         student.setAddress(address);
 
-        service.marshaller(student, Student.class, "student.xml");
-        System.out.println("@@@" + service.unmarshaller("student.xml", Student.class).toString());
+        final String xmlInput = service.marshaller(student, Student.class);
+        System.out.println("Object to XML :: " + xmlInput);
+        System.out.println("XML to Java Object :: " + service.unmarshaller(xmlInput, Student.class).toString());
 
         final Root root = new Root();
 
@@ -38,9 +39,15 @@ public class AppMain {
         root.setName("<h1>Rajesh</h1>");
         root.setSurname("<h1>Subramaniam</h1>");
 
-        service.marshaller(root, Root.class, "root.xml");
-        System.out.println("@@@" + service.unmarshaller("root.xml", Root.class).toString());
+        final String xmlInputRoot = service.marshaller(root, Root.class);
+        System.out.println("Object to XML : " + xmlInputRoot);
+        System.out.println("XML to Object" + service.unmarshaller(xmlInputRoot, Root.class).toString());
+
+        final String jsonString = service.jsonMarshaller(student);
+
+        System.out.println("Object to JSON :: " + jsonString);
+
+        System.out.println("JSON to Java Object :: " + (service.jsonUnmarshaller(jsonString, Student.class)).toString());
 
     }
-
 }
